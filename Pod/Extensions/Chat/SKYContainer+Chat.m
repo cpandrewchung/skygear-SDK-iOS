@@ -548,7 +548,7 @@
                     [returnArray addObject:msg];
                 }
             }
-            returnArray = [[returnArray reverseObjectEnumerator] allObjects];
+//            returnArray = [[returnArray reverseObjectEnumerator] allObjects];
             completionHandler(returnArray,error);
         }
         else{
