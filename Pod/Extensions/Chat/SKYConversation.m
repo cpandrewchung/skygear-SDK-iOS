@@ -74,6 +74,14 @@
     self[@"picked_by"] = pickedBy;
 }
 
+- (SKYReference *)endBy{
+    return  self[@"end_by"];
+}
+
+- (void)setEndBy:(SKYReference *)endBy{
+    self[@"end_by"] = endBy;
+}
+
 //
 //- (NSString *)updatedAt{
 //    return self[@"updated_at"];

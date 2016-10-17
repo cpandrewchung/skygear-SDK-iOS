@@ -536,7 +536,7 @@
             for(NSDictionary *obj in resultArray){
                 SKYRecordID *recordID = [SKYRecordID recordIDWithCanonicalString:obj[SKYRecordSerializationRecordIDKey]];
                 NSMutableDictionary *mutObj = [obj mutableCopy];
-                [mutObj setObject:[@"message/" stringByAppendingString:[obj valueForKey:@"_id"]] forKey:@"_id"];
+//                [mutObj setObject:[@"message/" stringByAppendingString:[obj valueForKey:@"_id"]] forKey:@"_id"];
 //                [mutObj setObject:[[obj valueForKey:@"_created_at"] stringByAppendingString:@"+00:00"] forKey:@"_created_at"];
                 SKYRecordDeserializer *deserializer = [SKYRecordDeserializer deserializer];
                 SKYRecord *record = [deserializer recordWithDictionary:mutObj];

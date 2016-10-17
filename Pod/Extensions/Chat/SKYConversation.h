@@ -26,6 +26,7 @@
 @property (assign, nonatomic)BOOL isActive;
 @property (assign, nonatomic)BOOL isPickedUp;
 @property (strong, nonatomic)SKYReference* pickedBy;
+@property (strong, nonatomic)SKYReference* endBy;
 
 
 - (NSString *)toString;
