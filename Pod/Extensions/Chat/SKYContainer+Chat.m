@@ -518,6 +518,15 @@
     }];
 }
 
+- (void)unsubscribeHandler{
+    [self getOrCreateUserChannelCompletionHandler:^(SKYUserChannel *userChannel, NSError *error) {
+        if (!error) {
+            NSLog(@"unsubscribeHandler :%@",userChannel.name);
+            [self.pubsubClient unsubscribe:userChannel.name];
+        }
+    }];
+}
+
 - (void)getMessagesWithConversationId:(NSString *)conversationId withLimit:(NSString *)limit withBeforeTime:(NSDate *)beforeTime completionHandler:(SKYContainerGetMessagesActionCompletion)completionHandler{
     NSString *dateString = @"";
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -559,6 +568,47 @@
 
 }
 
+- (void)getMessagesAfterWithConversationId:(NSString *)conversationId withLimit:(NSString *)limit withBeforeTime:(NSDate *)beforeTime completionHandler:(SKYContainerGetMessagesActionCompletion)completionHandler{
+    NSString *dateString = @"";
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZZZZZ"];
+    dateString = [formatter stringFromDate:beforeTime];
+    NSLog(@"dateString :%@",dateString);
+    [self callLambda:@"chat:get_messages_after" arguments:@[conversationId,limit, dateString] completionHandler:^(NSDictionary *response, NSError *error) {
+        if (error) {
+            NSLog(@"error calling hello:someone: %@", error);
+        }
+        NSLog(@"Received response = %@", response);
+        NSArray *resultArray = [response objectForKey:@"results"];
+        if (resultArray.count > 0) {
+            NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+            for(NSDictionary *obj in resultArray){
+                SKYRecordID *recordID = [SKYRecordID recordIDWithCanonicalString:obj[SKYRecordSerializationRecordIDKey]];
+                NSMutableDictionary *mutObj = [obj mutableCopy];
+                //                [mutObj setObject:[@"message/" stringByAppendingString:[obj valueForKey:@"_id"]] forKey:@"_id"];
+                //                [mutObj setObject:[[obj valueForKey:@"_created_at"] stringByAppendingString:@"+00:00"] forKey:@"_created_at"];
+                SKYRecordDeserializer *deserializer = [SKYRecordDeserializer deserializer];
+                SKYRecord *record = [deserializer recordWithDictionary:mutObj];
+                
+                SKYMessage *msg = [SKYMessage recordWithRecord:record];
+                msg.isAlreadySyncToServer = true;
+                msg.isFail = false;
+                if (msg){
+                    [returnArray addObject:msg];
+                }
+            }
+            //            returnArray = [[returnArray reverseObjectEnumerator] allObjects];
+            completionHandler(returnArray,error);
+        }
+        else{
+            completionHandler(nil, error);
+        }
+        
+    }];
+    
+}
+
 - (void)fetchAssetsByRecordId:(NSString *)recordId CompletionHandler:(SKYContainerGetAssetsActionCompletion)completionHandler{
     NSString *recordName = [@"" stringByAppendingString:recordId];
     NSLog(@"recordName :%@",recordName);
@@ -572,29 +622,56 @@
 - (void)createMKConversationWithParticipantIds:(NSArray *)participantIds
                                 withAdminIds:(NSArray *)adminIds withTitle:(NSString *)title
                            completionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler{
+    bool* foundActiveCon = [self getActiveConversationWithCompletionHandler: completionHandler];
     
-    SKYConversation *conv = [SKYConversation recordWithRecordType:@"conversation"];
-    conv.participantIds = participantIds;
-    if(![adminIds containsObject:self.currentUserRecordID]){
-        NSMutableArray *array = [adminIds mutableCopy];
-        [array addObject:self.currentUserRecordID];
-        adminIds = [array copy];
-    }
-    conv.adminIds = adminIds;
-    conv.title = title;
-    conv.isActive = true;
-    conv.isPickedUp = false;
-    conv.isDirectMessage = false;
-    
-    [self.publicCloudDatabase saveRecord:conv completion:^(SKYRecord *record, NSError *error) {
-        if (error) {
-            NSLog(@"error saving todo: %@", error);
+    if (!foundActiveCon) {
+        SKYConversation *conv = [SKYConversation recordWithRecordType:@"conversation"];
+        conv.participantIds = participantIds;
+        if(![adminIds containsObject:self.currentUserRecordID]){
+            NSMutableArray *array = [adminIds mutableCopy];
+            [array addObject:self.currentUserRecordID];
+            adminIds = [array copy];
         }
-        NSLog(@"saved todo with recordID = %@", record.recordID);
-        SKYConversation *con = [SKYConversation recordWithRecord:record];
-        completionHandler(con, error);
+        conv.adminIds = adminIds;
+        conv.title = title;
+        conv.isActive = true;
+        conv.isPickedUp = false;
+        conv.isDirectMessage = false;
+        
+        [self.publicCloudDatabase saveRecord:conv completion:^(SKYRecord *record, NSError *error) {
+            if (error) {
+                NSLog(@"error saving todo: %@", error);
+            }
+            NSLog(@"saved todo with recordID = %@", record.recordID);
+            SKYConversation *con = [SKYConversation recordWithRecord:record];
+            completionHandler(con, error);
+        }];
+    }
+}
+
+- (bool)getActiveConversationWithCompletionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler{
+    NSPredicate *pred0 =  [NSPredicate predicateWithFormat:@"%@ in participant_ids", self.currentUserRecordID];
+    NSPredicate *pred1 =  [NSPredicate predicateWithFormat:@"is_active = %@", @YES];
+    NSPredicate *pred2 = [NSPredicate predicateWithFormat:@"is_picked_up = %@", @NO];
+    NSCompoundPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[pred0,pred1,pred2]];
+    SKYQuery *query = [SKYQuery queryWithRecordType:@"conversation" predicate:predicate];
+    query.limit = 1;
+    
+    __block bool *foundActiveCon = FALSE;
+    
+    [self.publicCloudDatabase performQuery:query completionHandler:^(NSArray *results, NSError *error) {
+        if ([results count] > 0) {
+            NSLog(@"Active conversation found");
+            SKYUserConversation *con = [SKYUserConversation recordWithRecord:[results objectAtIndex:0]];
+//            completionHandler(con.conversation,error);
+            foundActiveCon = TRUE;
+        }
+        else{
+            NSLog(@"No active conversation found");
+        }
     }];
     
+    return foundActiveCon;
 }
 
 

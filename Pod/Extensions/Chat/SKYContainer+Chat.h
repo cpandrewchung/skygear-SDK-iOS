@@ -65,6 +65,7 @@ typedef void (^SKYContainerGetAssetsActionCompletion)(SKYAsset *assets, NSError 
 
 
 - (void)getMessagesWithConversationId:(NSString *)conversationId withLimit:(NSString *)limit withBeforeTime:(NSDate *)beforeTime completionHandler:(SKYContainerGetMessagesActionCompletion)completionHandler;
+- (void)getMessagesAfterWithConversationId:(NSString *)conversationId withLimit:(NSString *)limit withBeforeTime:(NSDate *)beforeTime completionHandler:(SKYContainerGetMessagesActionCompletion)completionHandler;
 
 - (void)markAsLastMessageReadWithConversationId:(NSString *)conversationId withMessageId:(NSString *)messageId completionHandler:(SKYContainerLastMessageReadOperationActionCompletion)completionHandler;
 - (void)getOrCreateLastMessageReadithConversationId:(NSString *)conversationId completionHandler:(SKYContainerLastMessageReadOperationActionCompletion)completionHandler;
@@ -76,9 +77,10 @@ typedef void (^SKYContainerGetAssetsActionCompletion)(SKYAsset *assets, NSError 
 
 
 //MK related
+- (void)unsubscribeHandler;
 - (void)createMKConversationWithParticipantIds:(NSArray *)participantIds
                                   withAdminIds:(NSArray *)adminIds withTitle:(NSString *)title
                              completionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler;
 
-
+- (bool)getActiveConversationWithCompletionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler;
 @end
