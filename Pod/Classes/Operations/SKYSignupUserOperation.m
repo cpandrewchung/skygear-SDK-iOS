@@ -113,14 +113,14 @@
 
                 SKYUser *user = [[SKYUserDeserializer deserializer] userWithDictionary:response];
 
-                NSMutableArray<SKYRole *> *roles = [[NSMutableArray alloc] init];
-                NSArray<NSString *> *roleNames = response[@"roles"];
-                [roleNames enumerateObjectsUsingBlock:^(NSString *perRoleName, NSUInteger idx,
-                                                        BOOL *stop) {
-                    [roles addObject:[SKYRole roleWithName:perRoleName]];
-                }];
+                // NSMutableArray<SKYRole *> *roles = [[NSMutableArray alloc] init];
+                // NSArray<NSString *> *roleNames = response[@"roles"];
+                // [roleNames enumerateObjectsUsingBlock:^(NSString *perRoleName, NSUInteger idx,
+                //                                         BOOL *stop) {
+                //     [roles addObject:[SKYRole roleWithName:perRoleName]];
+                // }];
 
-                user.roles = roles;
+                // user.roles = roles;
 
                 SKYAccessToken *accessToken =
                     [[SKYAccessToken alloc] initWithTokenString:response[@"access_token"]];
