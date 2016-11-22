@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSString *messageId;
 
 + (instancetype)recordWithLastMessageReadRecordType;
+- (id)init;
 
 @end

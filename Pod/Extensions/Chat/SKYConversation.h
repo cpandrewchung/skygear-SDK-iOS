@@ -16,8 +16,17 @@
 @property (strong, nonatomic) NSArray<NSString *> *adminIds;
 @property (strong, nonatomic) NSString *title;
 @property (assign, nonatomic) BOOL isDirectMessage;
+//@property (strong, nonatomic)NSString* updatedAt;
 @property (strong, nonatomic) NSDate *updatedDate;
 @property (strong, nonatomic) SKYChatUser *otherUser;
+@property (strong, nonatomic) NSString *lastMessage;
+@property (assign, nonatomic) int count;
+
+//MK related
+@property (assign, nonatomic) BOOL isActive;
+@property (assign, nonatomic) BOOL isPickedUp;
+@property (strong, nonatomic) SKYReference *pickedBy;
+@property (strong, nonatomic) SKYReference *endBy;
 
 - (NSString *)toString;
 - (NSString *)getOtherUserUserId:(NSString *)myUserId;

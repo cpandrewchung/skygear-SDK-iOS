@@ -11,6 +11,9 @@
 
 @implementation SKYMessage
 
+- (id)init{
+    return [SKYRecord recordWithRecordType:@"message"];
+}
 + (instancetype)recordWithMessageRecordType
 {
     return [[self alloc] initWithRecordType:@"message"];

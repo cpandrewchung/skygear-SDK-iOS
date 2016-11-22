@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSString *name;
 
 + (instancetype)recordWithUserChannelRecordType;
+- (id)init;
 
 @end

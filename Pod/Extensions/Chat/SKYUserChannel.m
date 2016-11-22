@@ -10,6 +10,9 @@
 
 @implementation SKYUserChannel
 
+- (id)init{
+    return [SKYRecord recordWithRecordType:@"user_channel"];
+}
 + (instancetype)recordWithUserChannelRecordType
 {
     return [[self alloc] initWithRecordType:@"user_channel"];

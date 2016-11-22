@@ -10,6 +10,10 @@
 
 @implementation SKYLastMessageRead
 
+- (id)init{
+    return [SKYRecord recordWithRecordType:@"last_message_read"];
+}
+
 + (instancetype)recordWithLastMessageReadRecordType
 {
     return [[self alloc] initWithRecordType:@"last_message_read"];

@@ -27,6 +27,7 @@
 
 + (instancetype)recordWithMessageRecordType;
 
+- (id)init;
 - (NSInteger)getMsgType;
 - (NSString *)getAssetURLForImage;
 - (NSString *)getAssetURLForVoice;

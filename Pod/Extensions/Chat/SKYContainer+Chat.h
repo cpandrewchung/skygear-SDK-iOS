@@ -142,4 +142,25 @@ typedef void (^SKYContainerConversationOperationActionCompletion)(SKYConversatio
 - (void)fetchAssetsByRecordId:(NSString *)recordId
             CompletionHandler:(SKYContainerGetAssetsActionCompletion)completionHandler;
 
+/**
+ Login a facebook user.
+ */
+- (void)loginWithFacebookAccessToken:(FBSDKAccessToken *)accessToken
+                   completionHandler:(SKYContainerUserOperationActionCompletion)completionHandler;
+- (void)getConversationWithConversationId:(NSString *)conversationId completionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler;
+- (void)getConversationsCompletionHandler:(SKYContainerGetConversationListActionCompletion)completionHandler;
+//-(void)createMessageWithConversationId:(NSString *)conversationId withBody:(NSString *)body withMetadata:(id)metadata completionHandler:(SKYContainerMessageOperationActionCompletion)completionHandler;//not finished
+
+- (void)createMessageWithSKYMessage:(SKYMessage *)message completionHandler:(SKYContainerMessageOperationActionCompletion)completionHandler;
+
+
+- (void)getMessagesAfterWithConversationId:(NSString *)conversationId withLimit:(NSString *)limit withBeforeTime:(NSDate *)beforeTime completionHandler:(SKYContainerGetMessagesActionCompletion)completionHandler;
+
+//MK related
+- (void)unsubscribeHandler;
+- (void)createMKConversationWithParticipantIds:(NSArray *)participantIds
+                                  withAdminIds:(NSArray *)adminIds withTitle:(NSString *)title
+                             completionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler;
+
+- (bool)getActiveConversationWithCompletionHandler:(SKYContainerConversationOperationActionCompletion)completionHandler;
 @end
