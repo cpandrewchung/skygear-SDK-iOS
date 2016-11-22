@@ -71,6 +71,9 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		6019C1E11D6BF6D50028C6F6 /* SKYGetCurrentUserOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6019C1E01D6BF6D50028C6F6 /* SKYGetCurrentUserOperationTests.m */; };
+		60209E5B1D76C48E00B7E10B /* SKYGetAssetPostRequestOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60209E5A1D76C48E00B7E10B /* SKYGetAssetPostRequestOperationTests.m */; };
+		60209E651D76F18400B7E10B /* SKYPostAssetOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 60209E641D76F18400B7E10B /* SKYPostAssetOperationTests.m */; };
 		6031B9761C7D71C700132DED /* SKYUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031B9751C7D71C700132DED /* SKYUserTests.m */; };
 		6031B97C1C7EB79400132DED /* SKYUpdateUserOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6031B97B1C7EB79400132DED /* SKYUpdateUserOperationTests.m */; };
 		604A899B1C7C05A20013E114 /* SKYDefineAdminRolesOperationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 604A899A1C7C05A20013E114 /* SKYDefineAdminRolesOperationTests.m */; };
@@ -170,6 +173,9 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6019C1E01D6BF6D50028C6F6 /* SKYGetCurrentUserOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYGetCurrentUserOperationTests.m; sourceTree = "<group>"; };
+		60209E5A1D76C48E00B7E10B /* SKYGetAssetPostRequestOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYGetAssetPostRequestOperationTests.m; sourceTree = "<group>"; };
+		60209E641D76F18400B7E10B /* SKYPostAssetOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYPostAssetOperationTests.m; sourceTree = "<group>"; };
 		6031B9751C7D71C700132DED /* SKYUserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYUserTests.m; sourceTree = "<group>"; };
 		6031B97B1C7EB79400132DED /* SKYUpdateUserOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYUpdateUserOperationTests.m; sourceTree = "<group>"; };
 		604A899A1C7C05A20013E114 /* SKYDefineAdminRolesOperationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKYDefineAdminRolesOperationTests.m; sourceTree = "<group>"; };
@@ -360,6 +366,8 @@
 				38C1A5271C24316C003E57B7 /* SKYErrorCreatorTests.m */,
 				CD98A8A51A9F34390056420F /* SKYFetchRecordsOperationTests.m */,
 				376CB11C1AE906B600FA0324 /* SKYFetchSubscriptionsOperationTests.m */,
+				60209E5A1D76C48E00B7E10B /* SKYGetAssetPostRequestOperationTests.m */,
+				6019C1E01D6BF6D50028C6F6 /* SKYGetCurrentUserOperationTests.m */,
 				383D272A1B46EBA300AE8606 /* SKYLambdaOperationTests.m */,
 				38EAA71A1B84937C009D25C1 /* SKYLocationSortDescriptorTests.m */,
 				CD7FE26C1A9DBB9F002C076E /* SKYLoginUserOperationTests.m */,
@@ -367,6 +375,7 @@
 				CD48CE0E1AA06C7900A1CD04 /* SKYModifyRecordsOperationTests.m */,
 				3785584E1AE6CF5D00685319 /* SKYModifySubscriptionsOperationTests.m */,
 				CD7FE2681A9D9F31002C076E /* SKYOperationTests.m */,
+				60209E641D76F18400B7E10B /* SKYPostAssetOperationTests.m */,
 				5F0532C01B8D912E00DA4D8B /* SKYPubsubTests.m */,
 				37B477B61AE8A9C100B8566D /* SKYQueryDeserializerTests.m */,
 				CD42FE131AA4499C0079B3DA /* SKYQueryOperationTests.m */,
@@ -442,12 +451,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3813B6B81D35E62C004F4E14 /* Build configuration list for PBXNativeTarget "Swift Example" */;
 			buildPhases = (
+				4BBE3A885AA5C6BFB6E1F591 /* [CP] Check Pods Manifest.lock */,
 				AF706E77B7EA270CED194D2C /* [CP] Check Pods Manifest.lock */,
 				3813B6A11D35E62C004F4E14 /* Sources */,
 				3813B6A21D35E62C004F4E14 /* Frameworks */,
 				3813B6A31D35E62C004F4E14 /* Resources */,
 				4BF1AC8DFC5E22D4A38AA2E9 /* [CP] Embed Pods Frameworks */,
 				8EA50FA3B26BE2BD8795DDE6 /* [CP] Copy Pods Resources */,
+				83C89C1733D3E831C42BBEFF /* 📦 Embed Pods Frameworks */,
+				3FCA30C0FAAF449F2BEABF92 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -462,12 +474,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38A48B561D34E41800988B84 /* Build configuration list for PBXNativeTarget "Test Runner" */;
 			buildPhases = (
+				81AC28B0C91D212412E0E64B /* [CP] Check Pods Manifest.lock */,
 				A47097FF0883B0AE933BEC11 /* [CP] Check Pods Manifest.lock */,
 				38A48B3C1D34E41800988B84 /* Sources */,
 				38A48B3D1D34E41800988B84 /* Frameworks */,
 				38A48B3E1D34E41800988B84 /* Resources */,
 				58642CE7B3DEBEA53556B9B2 /* [CP] Embed Pods Frameworks */,
 				92F16B3D2496819EF51C48F3 /* [CP] Copy Pods Resources */,
+				9DD5AC94F32B2E1BA3178F84 /* 📦 Embed Pods Frameworks */,
+				28792551FF4936740E554B6E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -482,12 +497,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
+				A73ECC1557B8283D60DB144D /* [CP] Check Pods Manifest.lock */,
 				72569F594B86C48CDD29E3A3 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				562CC00C18E401CAE9664D0B /* [CP] Embed Pods Frameworks */,
 				07355A064CA838B7CC3EE901 /* [CP] Copy Pods Resources */,
+				880602BC4E4490E7232CAEB7 /* 📦 Embed Pods Frameworks */,
+				EEE47439E97BEC9A6F86CCF7 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -589,6 +607,51 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		28792551FF4936740E554B6E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test Runner/Pods-Test Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FCA30C0FAAF449F2BEABF92 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift Example/Pods-Swift Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BBE3A885AA5C6BFB6E1F591 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		4BF1AC8DFC5E22D4A38AA2E9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -649,6 +712,51 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		81AC28B0C91D212412E0E64B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		83C89C1733D3E831C42BBEFF /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift Example/Pods-Swift Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		880602BC4E4490E7232CAEB7 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8EA50FA3B26BE2BD8795DDE6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -679,7 +787,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test Runner/Pods-Test Runner-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9DD5AC94F32B2E1BA3178F84 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Test Runner/Pods-Test Runner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A47097FF0883B0AE933BEC11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A73ECC1557B8283D60DB144D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -721,6 +859,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc --project-name $PROJECT_NAME --project-company \"Oursky\" --company-id com.oursky --ignore \".m\" --explicit-crossref --keep-undocumented-objects --keep-undocumented-members --no-warn-missing-arg --no-warn-undocumented-object --no-warn-undocumented-member --no-warn-empty-description --no-repeat-first-par --docset-bundle-id $PROJECT_NAME --docset-bundle-name $PROJECT_NAME --keep-intermediate-files --output \"$BUILD_DIR/docset\" \"$PROJECT_DIR/../Pod/Classes\"";
+		};
+		EEE47439E97BEC9A6F86CCF7 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -764,6 +917,7 @@
 				CD48CE0D1AA05A9200A1CD04 /* SKYContainerTests.m in Sources */,
 				38E053D91AC1489A00850988 /* SKYRegisterDeviceOperationTests.m in Sources */,
 				CD56972E1AAC7E2500AE596B /* SKYRecordTests.m in Sources */,
+				60209E5B1D76C48E00B7E10B /* SKYGetAssetPostRequestOperationTests.m in Sources */,
 				3867EA331AFC5B7100962100 /* SKYRecordStorageCoordinatorTests.m in Sources */,
 				37CDD6041B4BF1F8007B9FE1 /* SKYUploadAssetOperationTests.m in Sources */,
 				CD98A8A41A9F28030056420F /* SKYRecordDeserializerTests.m in Sources */,
@@ -798,6 +952,7 @@
 				5F9F71411B0B131A00F7ADDD /* SKYAddRelationsOperationTests.m in Sources */,
 				37B10B1C1B1C5F0400052740 /* SKYUserDeserializerTests.m in Sources */,
 				383510EC1AFB5014009DD3E2 /* SKYRecordStorageTests.m in Sources */,
+				60209E651D76F18400B7E10B /* SKYPostAssetOperationTests.m in Sources */,
 				CD8FE8301A9F1FE10087FE71 /* SKYRecordSerializerTests.m in Sources */,
 				CD42FE141AA4499C0079B3DA /* SKYQueryOperationTests.m in Sources */,
 				CD7FE26B1A9DB97B002C076E /* NSURLRequestSKYRequestTests.m in Sources */,
@@ -805,6 +960,7 @@
 				6031B97C1C7EB79400132DED /* SKYUpdateUserOperationTests.m in Sources */,
 				37B477B71AE8A9C100B8566D /* SKYQueryDeserializerTests.m in Sources */,
 				604A899D1C7C34390013E114 /* SKYSetUserDefaultRoleOperationTests.m in Sources */,
+				6019C1E11D6BF6D50028C6F6 /* SKYGetCurrentUserOperationTests.m in Sources */,
 				CD98A8A61A9F34390056420F /* SKYFetchRecordsOperationTests.m in Sources */,
 				383D272B1B46EBA300AE8606 /* SKYLambdaOperationTests.m in Sources */,
 			);

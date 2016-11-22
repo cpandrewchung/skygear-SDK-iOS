@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SKYKit"
-  s.version          = "0.14.0"
+  s.version          = "0.16.0"
   s.summary          = "iOS SDK for Skygear"
   s.description      = <<-DESC
                        This is the client library for Skygear backend.
@@ -33,5 +33,10 @@ Pod::Spec.new do |s|
 
     facebook.dependency 'SKYKit/Core'
     facebook.dependency 'FBSDKCoreKit', '~> 4.0'
+  end
+  s.subspec 'Chat' do |chat|
+    chat.source_files = 'Pod/Extensions/Chat/**/*.{h,m}'
+    chat.requires_arc = true
+    chat.dependency 'SKYKit/Core'
   end
 end
