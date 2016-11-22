@@ -52,6 +52,8 @@ typedef void (^SKYContainerGetMessagesActionCompletion)(NSArray<SKYMessage *> *m
 typedef void (^SKYContainerGetAssetsActionCompletion)(SKYAsset *assets, NSError *error);
 typedef void (^SKYContainerConversationOperationActionCompletion)(SKYConversation *conversation,
                                                                   NSError *error);
+// MK
+typedef void (^SKYContainerGetConversationListActionCompletion)(NSArray<SKYUserConversation*> *conversationList, NSError *error);
 
 - (void)createConversationWithParticipantIds:(NSArray *)participantIds
                                 withAdminIds:(NSArray *)adminIds
